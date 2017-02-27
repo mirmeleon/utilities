@@ -1,0 +1,10 @@
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\bin\Debug\RepositoryAndUnitExample.exe.config
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\bin\Debug\RepositoryAndUnitExample.exe
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\bin\Debug\RepositoryAndUnitExample.pdb
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\bin\Debug\EntityFramework.dll
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\bin\Debug\EntityFramework.xml
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\obj\Debug\RepositoryAndUnitExample.csprojResolveAssemblyReference.cache
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\obj\Debug\RepositoryAndUnitExample.exe
+c:\users\dell\documents\visual studio 2015\Projects\RepositoryAndUnitExample\RepositoryAndUnitExample\obj\Debug\RepositoryAndUnitExample.pdb
