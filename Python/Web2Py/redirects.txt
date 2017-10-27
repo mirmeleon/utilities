@@ -1,0 +1,14 @@
+def take_survey():
+    uuid = request.args(0)
+    survey = db.survey(uuid=uuid)
+    if survey.requires_login and not auth.user: #ako niaame user
+        #1vo go redirektvame da se logne, i vednaga kat se logne go redirektvame sus sushtite args, koito e imal predi da se logne
+        redirect(URL('user/login', vars=dict(_next=URL(args=request.args))))
+        
+    if request.post_vars:
+        #choice e name vuv inputa na formata, taka hvashtame kakvo e izbral usera; parsvame go na int
+        i = int(request.post_vars.choice)
+        survey.results[i]+=1
+        survey.update_record(results=survey.results)
+        redirect(URL('thank_you'))
+    return locals()

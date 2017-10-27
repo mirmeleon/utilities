@@ -1,0 +1,22 @@
+//args vinagi idvat kat strings
+request.args(0), request.args(1)
+
+//variables
+request.vars.form_name
+
+form
+def request_vars():
+    if request.post_vars:
+        num1 = float(request.post_vars.num1)
+        num2 = float(request.post_vars.num2)
+        total = num1+num2
+    return locals()
+
+//vuv vieto
+<form method="post">
+  <input type="text" name="num1">
+     <input type="text" name="num2">
+     <input type="submit" value="Submit">
+</form>
+
+<h2>The total is {{=total}}</h2>

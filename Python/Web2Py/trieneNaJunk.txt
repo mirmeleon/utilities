@@ -1,0 +1,2 @@
+triene na junk
+//v menu.py se trie vsichko sled response.menu do if "auth" in locals()

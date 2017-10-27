@@ -1,0 +1,7 @@
+//v db1.py
+
+db(db.task).delete()
+from gluon.contrib.populate import populate
+populate(db.task, 100)
+
+//kat mu dadem save to pulni db-to ama posle triabva da go zakomentirame, za da ne pulni/trie pak

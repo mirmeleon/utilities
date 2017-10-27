@@ -1,0 +1,12 @@
+23 video
+
+{{="%(first_name)s %(last_name)s" % task.created_by}} //zima go ot created_by na tablicata ako polzvame  auth.signature
+
+//alternativno (koeto e po dobria variant) si pravim metod v db1.py
+def fullName(user_id):
+    if user_id is None:
+        return "Unknown"
+    return "%(first_name)s %(last_name)s (#%(id)s)" % db.auth_user(user_id)
+
+i posle vuv vietata vikame nego
+{{=fullName(task.created_by)}}    ili {{=fullName(task.assigned_to)}}

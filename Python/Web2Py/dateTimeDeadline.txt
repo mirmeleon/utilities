@@ -1,0 +1,11 @@
+/v db1.py
+import datetime
+week = datetime.timedelta(days=7) #definirame si 1 sedmica; timedelta e parsvaneto za days na pyton
+
+db.define_table('task',
+                Field('title',requires=IS_NOT_EMPTY()),
+                Field('description','text'),
+                Field('assigned_to', 'reference auth_user'), #referirame users db
+                Field('status', requires=IS_IN_SET(STATUSES),default=STATUSES[0]),
+                Field('deadline', 'date', default=request.now+week), #pravim deadline sled 1 sedmica
+                auth.signature)

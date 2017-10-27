@@ -1,0 +1,4 @@
+python everywhere ia hostna
+//1 svali si appa s 
+manage-> dade package all
+//2 pri uploada selektna overwrite instaled app

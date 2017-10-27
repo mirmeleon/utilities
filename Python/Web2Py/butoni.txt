@@ -1,0 +1,17 @@
+//premahvane na avtomatichno generiranite butoni ot formite
+grid = SQLFORM.grid(query, orderby=~db.task.modified_on, create=False, details=lambda editable=False, deletable=False)
+
+me= auth.user_id
+//s lamda izraz ako nie sme suzdali taska da mojem da ia triem
+ grid = SQLFORM.grid(query, orderby=~db.task.modified_on, create=False, deletable=lambda row:(row.created_by==me))
+
+//dobaviane na butoni
+            links=[
+        lambda row: A('view task',_href=URL('view_task', args=row.id),_class="btn btn-warning")
+        ]
+
+//cialoto stava
+grid = SQLFORM.grid(query, orderby=~db.task.modified_on, create=False, deletable=lambda row:(row.created_by==me),
+                       links=[
+        lambda row: A('view task',_href=URL('view_task', args=row.id),_class="btn btn-warning")
+        ])

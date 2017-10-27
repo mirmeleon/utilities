@@ -1,0 +1,28 @@
+//1 pasvame id-to na comentara kat atribut
+{{for post in posts:}}
+<div class="alert alert-info">
+    <button type="button" class="close" data-id="{{=post.id}}" data-dismiss="alert">&times;</button>
+    {{=post.body}}
+</div>
+{{pass}}
+
+//2 hvashtame go s jquey v suhtoto view 
+<script>
+jQuery('.close').on('click',function(){
+   alert('here');
+  let comment = jQuery(this);
+  let id = comment.attr('data-id');
+    alert(id);
+    jQuery.post('{{=URL('delete_post')}}', {id:id}); //predavame args kum delete post
+})
+</script>
+
+//3 preprashtame go s jquery.post kat vars i si pravim  delete_post action
+def delete_post():
+    if request.env.request_method=="POST":
+        post_id = request.vars.id
+        post = db.post(post_id)
+        if post and post.created_by == me:    #ako ne e nulla i az sum avtora
+            post.delete_record()
+            return 'true'
+    return 'false'

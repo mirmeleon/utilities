@@ -1,0 +1,30 @@
+//imame 2 tablici v db task i post. V post imame pole referirashto kum task
+Field('task', 'reference task'),
+//i posle v controlera mu zadavame default stoynost da bude id-to na zapisa ot tablicata kum koiato referira
+ 
+db.post.task.default = task.id #kazvame mu defaultnata stoynost ti e =na id
+
+//celia primer
+db.define_table('task',
+                Field('title',requires=IS_NOT_EMPTY()),
+                Field('description','text'),
+                Field('assigned_to', 'reference auth_user'), #referirame users db
+                Field('status', requires=IS_IN_SET(STATUSES),default=STATUSES[0]),
+                Field('deadline', 'date', default=request.now+week),
+                auth.signature)
+
+db.define_table('post',
+               Field('task', 'reference task'),
+               Field('body', 'text', requires=IS_NOT_EMPTY()),
+                     auth.signature)
+
+//v controlera
+def view_task():
+    task_id = request.args(0, cast=int) #kastvame kum int; zimame id-to na taska
+    task = db.task(task_id) or redirect(URL('index'))
+    if not task.created_by==me and not task.assigned_to==me: error() #ako ne sum az suzdatelia ili ne e assigneta kum men vikame error
+    db.post.task.default = task.id #kazvame mu defaultnata stoynost ti e =na id
+    db.post.task.writable = False
+    form = SQLFORM(db.post).process()
+    posts = db(db.post).select(orderby=db.post.created_by)
+    return locals()

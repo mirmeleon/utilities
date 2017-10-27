@@ -1,0 +1,7 @@
+v db.py (ne db1) dobaviam nakraia prettydate
+from gluon.tools import Auth, Service, PluginManager, prettydate
+
+//polzva se vuv vieto
+{{=prettydate(task.created_on)}}
+
+i posle pokazva datata s on 24 minutes ago 

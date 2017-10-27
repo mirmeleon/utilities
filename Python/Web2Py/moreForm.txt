@@ -1,0 +1,4 @@
+<input name="title" type="text">
+//stoynostite si zimat taka
+form.vars.title  //title e kudeto name="edi kakvo si"
+form.vars.description

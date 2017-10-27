@@ -1,0 +1,11 @@
+ me= auth.user_id
+db.task.title.represent = lambda title,row:A(title, _href=URL('view_task', args=row.id))
+
+def tasks():
+      db.task.title.represent = lambda title,row:A(title, _href=URL('view_task', args=row.id))
+      query = (db.task.assigned_to == me) | (db.task.created_by==me)
+      grid = SQLFORM.grid(query, orderby=~db.task.modified_on, create=False, deletable=lambda row:(row.created_by==me),
+                       links=[
+        lambda row: A('view task',_href=URL('view_task', args=row.id),_class="btn btn-warning")
+        ])
+      return locals()

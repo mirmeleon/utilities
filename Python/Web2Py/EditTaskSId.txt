@@ -1,0 +1,4 @@
+Kato pravim linkove/butoni da editvame daden zapis podavame I argumenti pr id
+    {{=A('Edit task', _href=URL('edit_task', args=task.id),_class="btn btn-success")}}
+
+poveche info word 23

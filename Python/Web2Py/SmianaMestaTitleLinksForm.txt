@@ -1,0 +1,6 @@
+vuv fields ako im razmenia mestata shte razmeni i v tablicata, ama triabva da se izbroiat absolutno vsichki koloni ot db
+grid = SQLFORM.grid(query, orderby=~db.task.modified_on, create=False, deletable=lambda row:(row.created_by==me),
+                          fields=[db.task.title, db.task.id, db.task.assigned_to,db.task.created_by],
+                       links=[
+        lambda row: A('view task',_href=URL('view_task', args=row.id),_class="btn btn-warning")
+        ])

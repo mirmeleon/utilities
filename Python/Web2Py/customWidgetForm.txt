@@ -1,0 +1,5 @@
+//promenia malko izgleda vuv vieto ako se napishe s custom
+{{=form.custom.begin}}
+{{=form.custom.widget.body}}
+{{=form.custom.submit}}
+{{=form.custom.end}}
