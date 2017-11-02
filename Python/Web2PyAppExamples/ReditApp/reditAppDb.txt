@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+db.define_table('category',
+                Field('name', requires=(IS_SLUG(),IS_LOWER(),IS_NOT_IN_DB(db,'category.name')))) #ogranichi go catgeory name da e unikalno
+
+db.define_table('post',
+               Field('category', 'reference category',writable=False, readable=False),
+               Field('title', 'string', requires=IS_NOT_EMPTY()),
+               Field('url', requires=IS_EMPTY_OR(IS_URL())), #ili da e prazno ili da e url drugo ne moje
+               Field('body', 'text', requires=IS_NOT_EMPTY()),
+               Field('votes', 'integer', default=0, writable=False, readable=False),
+               auth.signature)  #tva dobavia create_on, modified_on; created_by/modified_by, is_active
+db.define_table('vote',
+               Field('post', 'reference post'),
+               Field('score', 'integer', default=+1),
+               auth.signature) #zadade mu defaultna stoynost
+
+db.define_table('comm',
+                Field('post','reference post'),
+                Field('parent_comm', 'reference comm'),
+                Field('votes','integer'),
+                Field('body', 'text'),
+                auth.signature)
+
+db.define_table('comm_vote',
+               Field('comm', 'reference post'), #tyka imah greshk
+               Field('score', 'integer', default=+1),
+               auth.signature) #zadade mu defaultna stoynost
+
+def author(id):
+    if id is None:
+        return "unknown"
+    else:
+        user = db.auth_user(id)
+        return A('%(firt_name)s %(last_name)s' % user, _href=URL('list_posts_by_author', args=user.id)) #user e dictionary det sudurja firs and last name
+
+#seedvane na tablica
+from gluon.contrib.populate import populate
+if db(db.auth_user).count()<2:
+    populate(db.auth_user,100)
+    db.commit()
+if db(db.post).count()<2:
+    populate(db.post, 500)
+    db.commit()
+db(db.post.id>500).delete()
+if db(db.comm).count()<2:
+    populate(db.comm, 100)
+    db.commit()

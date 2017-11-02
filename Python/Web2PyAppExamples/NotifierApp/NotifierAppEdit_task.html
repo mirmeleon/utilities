@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+
+<div style="text-align:right">
+    {{=A('Back to view task', _href=URL('view_task', args=task.id),_class="btn btn-success")}}
+</div>
+
+{{=form}}

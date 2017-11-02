@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+db.define_table('blog',
+               Field('blog_title'),
+               Field('blog_details', 'text'),
+               Field('url', requires=IS_URL()),
+               Field('blog_date_posted', type='date', requires=IS_DATE()),
+               auth.signature)
+
+db.define_table('commentar',
+               Field('blog', 'reference blog'),
+               Field('parent_comm', 'reference commentar'),
+               Field('comm_text', 'text'),
+               Field('comm_date_posted', type='date', requires=IS_DATE()),
+               auth.signature)
+
+def author(id):
+    if id is None:
+        return "unknown"
+    else:
+        user = db.auth_user(id)
+        return A('%(firt_name)s %(last_name)s' % user, _href=URL('list_posts_by_author', args=user.id))

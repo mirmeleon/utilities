@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+
+<h1>
+    {{=survey.name}}
+
+</h1>
+<p>
+    {{=survey.description}}
+</p>
+     {{for i,choice in enumerate(survey.choices):}}
+    <div class="well">
+        <span class="btn btn-success">{{=survey.results[i]}}</span>{{=choice}}
+    </div>
+    {{pass}}
+   <input type="submit">

@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+db.define_table('survey',
+               Field('name', requires=IS_NOT_EMPTY()),
+               Field('description', 'text', requires=IS_NOT_EMPTY()),
+               Field('choices', 'list:string'),
+               Field('requires_login', 'boolean', default=True), #tuy pole go pravim za da predotvratim da  glasuvat 2 puti
+               Field('results', 'list:integer', readable=False, writable=False),
+               Field('uuid', readable=False, writable=False),#za da ne se poiaviava vuv forms e false
+               auth.signature)
+
+db.define_table('votes',
+                 Field('survey', 'reference survey'),#kazvame mu che e svurzana s tablica servey
+                 auth.signature)

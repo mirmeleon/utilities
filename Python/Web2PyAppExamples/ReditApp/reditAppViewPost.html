@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}
+
+
+<div class="well">
+<h2>{{=A(post.title,_href=post.url) if post.url else post.title}}</h2>
+    {{if post.created_by == auth.user_id:}} <!-- ako si e suzdaden ot avtora -->
+    {{=A('Edit this post',  href=URL('edit_post', args=post.id))}}
+    {{pass}}
+<p>{{=post.body}}</p>
+</div>
+
+{{for comment in comments:}}
+<div class="well">
+  <i> by {{=author(comment.created_by)}}</i> "{{=comment.body}}"
+</div>
+
+</div>
+
+{{pass}}

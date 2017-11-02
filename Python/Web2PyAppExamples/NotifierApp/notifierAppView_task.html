@@ -1,0 +1,36 @@
+{{extend 'layout.html'}}
+<h2>proverka dali go pokazva taka id-to {{=task_id }}</h2>
+<h3>{{=task.title}}</h3>
+<div>
+    {{=A('Edit task', _href=URL('edit_task', args=task.id),_class="btn btn-success")}}
+</div>
+
+<p>{{=MARKMIN(task.description)}}</p>
+
+
+
+<h3> assigned to: {{=fullName(task.assigned_to)}}</h3>
+<h3>status:{{=show_status(task.status)}}</h3>
+Created by <strong>{{=fullName(task.created_by)}}</strong> on {{=prettydate(task.created_on)}}
+
+{{for post in posts:}}
+<div class="alert alert-info">
+    <button type="button" class="close" data-id="{{=post.id}}" data-dismiss="alert">&times;</button>
+    {{=post.body}}
+</div>
+{{pass}}
+
+<h3>Add a commentar</h3>
+{{=form.custom.begin}}
+{{=form.custom.widget.body}}
+{{=form.custom.submit}}
+{{=form.custom.end}}
+
+<script>
+jQuery('.close').on('click',function(){
+  let comment = jQuery(this);
+  let id = comment.attr('data-id');
+
+    jQuery.post('{{=URL('delete_post')}}', {id:id}); //predavame args kum delete post
+})
+</script>

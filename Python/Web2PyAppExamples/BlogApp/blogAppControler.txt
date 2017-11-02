@@ -1,0 +1,81 @@
+def index():
+    rows = "hi"
+    return locals()
+
+def post():
+    form=SQLFORM(db.blog).process()
+    return locals()
+
+def view():
+    rows = db(db.blog).select(orderby=~db.blog.id)
+    return locals()
+
+def details():
+    id = request.args(0, cast=int)
+    post = db.blog(id) or redirect(URL('index')) #ako niama post shte redirektne kum index
+    comments = db(db.commentar.blog == id).select(orderby=~db.commentar.created_on)
+    return locals()
+
+def display_form():
+   form = SQLFORM(db.blog)
+   if form.process().accepted:
+     session.flash = 'form accepted'
+     redirect(URL('view'))
+   elif form.errors:
+     response.flash = 'form accepted'
+   else:
+     session.flash = 'fill the formd'
+   return locals()
+
+def update():
+   record = db.blog(request.args(0)) or redirect(URL('post'))
+   form = SQLFORM(db.blog, record)
+   if form.process().accepted:
+      response.flash = T('Record updates')
+   else:
+      response.flash = T('please complete the form')
+   return locals()
+
+def add_commentar():
+     form = SQLFORM(db.commentar)
+     if form.process().accepted:
+       session.flash = 'form accepted'
+       redirect(URL('thanks'))
+     return locals()
+
+def user():
+    """
+    exposes:
+    http://..../[app]/default/user/login
+    http://..../[app]/default/user/logout
+    http://..../[app]/default/user/register
+    http://..../[app]/default/user/profile
+    http://..../[app]/default/user/retrieve_password
+    http://..../[app]/default/user/change_password
+    http://..../[app]/default/user/bulk_register
+    use @auth.requires_login()
+        @auth.requires_membership('group name')
+        @auth.requires_permission('read','table name',record_id)
+    to decorate functions that need access control
+    also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users
+    """
+    return dict(form=auth())
+
+
+@cache.action()
+def download():
+    """
+    allows downloading of uploaded files
+    http://..../[app]/default/download/[filename]
+    """
+    return response.download(request, db)
+
+
+def call():
+    """
+    exposes services. for example:
+    http://..../[app]/default/call/jsonrpc
+    decorate with @services.jsonrpc the functions to expose
+    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
+    """
+    return service()

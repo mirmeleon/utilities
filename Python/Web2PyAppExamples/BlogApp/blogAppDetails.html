@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+<h1>This is the details template</h1>
+{{=post.blog_title}}
+
+<h3>comments</h3>
+{{for r in comments:}}
+<p>{{=r.comm_text}}</p>
+<p>{{=r.comm_date_posted}}</p>
+<p>Add commentar {{=A('add', _class="btn btn-large btn-primary", _href=URL('add_commentar', args=r.id))}}</p>
+{{pass}}

@@ -1,0 +1,77 @@
+def index():
+    db.survey.description.readable = False
+    db.survey.choices.readable = False
+    #displayvame vsichko ot table created by, obache ne davame na userite CRUD
+    grid = SQLFORM.grid(db.survey.created_by==auth.user_id, create=False,editable=False, deletable=True, details=False,
+                        links=[lambda row: A('take', _href=URL('take_survey', args=row.uuid),_class="btn btn-success"),
+                               lambda row: A('results', _href=URL('see_results', args=row.uuid),_class="btn btn-warning")])
+    response.flash ="hi"
+    return locals()
+
+@auth.requires_login()
+def create_survey():
+    def myfunc(form):
+        form.vars.results = [0]*len(request.vars.choices)  #choices e imeto na poleto ot tablicata; [0] oznachava list ot 0li
+    #tazi funkcia web2py_uuid  generira random uuid
+    from gluon.utils import web2py_uuid
+    db.survey.uuid.default = uuid = web2py_uuid() #pravi tazi kolona da ima randomly generated string i i naznachava default stoynost
+    form = SQLFORM(db.survey).process(onvalidation=myfunc) #pri validacia da vika myfunc
+    if form.accepted:
+        redirect(URL('take_survey', args=uuid))
+    return locals()
+
+def take_survey():
+    uuid = request.args(0)
+    survey = db.survey(uuid=uuid) or redirect(URL('index'))
+    if survey.requires_login:
+        if not auth.user:
+        #1vo go redirektvame da se logne, i vednaga kat se logne go redirektvame sus sushtite args, koito e imal predi da se logne
+         redirect(URL('user/login', vars=dict(_next=URL(args=uuid))))
+         vote = db.vote(survey=survey.id, created_by=auth.user.id) #zimame vota na usera ako ima
+         if vote:
+                session.flash= 'You voted already!'
+                redirect(URL('thank_you'))
+    if request.post_vars:
+        #choice e name vuv inputa na formata, taka hvashtame kakvo e izbral usera; parsvame go na int
+        i = int(request.post_vars.choice)
+        survey.results[i]+=1
+        survey.update_record(results=survey.results)
+        db.vote.insert(survey=survey.id) #ako ne e glasuval do sega mu zapisvame vota
+        redirect(URL('thank_you'))
+    return locals()
+
+def thank_you():
+    return dict() #prosto kazva thank you
+
+@auth.requires_login()
+def see_results():
+    uuid = request.args(0)
+    survey = db.survey(uuid=uuid)
+    if survey.created_by != auth.user.id: #ako lognatia user ne e avtor
+     session.flash = 'User not autorized'
+    redirect(URL('index'))
+    return locals()
+
+#toia action implements login/logout
+def user():
+
+    return dict(form=auth())
+
+
+@cache.action()
+def download():
+    """
+    allows downloading of uploaded files
+    http://..../[app]/default/download/[filename]
+    """
+    return response.download(request, db)
+
+
+def call():
+    """
+    exposes services. for example:
+    http://..../[app]/default/call/jsonrpc
+    decorate with @services.jsonrpc the functions to expose
+    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
+    """
+    return service()

@@ -1,0 +1,8 @@
+def ajaxwiki():
+    form=FORM(TEXTAREA(_id='text',_name='text'),
+              INPUT(_type='button',_value='markmin',
+              _onclick="ajax('ajaxwiki_onclick',['text'],'html')"))
+    return dict(form=form,html=DIV(_id='html'))  //pravi go na div id="_html"
+
+def ajaxwiki_onclick():
+    return H1(request.vars.text)

@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+
+<h1>
+    {{=survey.name}}
+</h1>
+<p>
+    {{=survey.description}}
+</p>
+<form method="POST" action="#">
+     {{for i,choice in enumerate(survey.choices):}}
+    <div class="well">
+    <input type="radio" name="choice" value="{{=i}}"/>{{=choice}} id = {{=i}}
+    </div>
+    {{pass}}
+   <input type="submit">
+</form>

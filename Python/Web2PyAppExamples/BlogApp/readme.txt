@@ -1,0 +1,1 @@
+samo za primer zaradi komentarite e
