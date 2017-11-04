@@ -1,0 +1,32 @@
+https://try.github.io/levels/1/challenges/6
+git init - initialise git repository
+git status - command to see what the current state of our project is
+we create some file, i toy e untracked(kat mu kajem git status ni go dava)
+To tell Git to start tracking changes made to octocat.txt, we first need to add it to the 
+staging area by using git add.
+git add + imeto na faila i razshrenieto/git add test.txt/
+git commit -m "nashia komentar za promenite "
+git add '*.txt' -dobaviame naikolko faila navednuj
+git log -historyto ni e tuy
+git log --summary to see more information for each commit.
+git remote add origin https://github.com/try-git/try_git.git //origin ni e imeto na repositorito na kompa
+git push -u origin master -The name of our remote repos. is origin and the default local branch name
+is master. The -u tells Git to remember the parameters, so that next time we can simply run 
+git push and Git will know what to do.
+git pull origin master -check for changes on our repository and pull down any new changes.
+git diff HEAD - shows the differences of our most recent commit,which we can refer to using
+Head
+
+git clone - +adresa na repositorito go kopira na lokalnia komp
+
+git diff --staged   -we see the changes we just staged
+git reset octofamily/octodog.txt -resetting the stage
+git checkout -- octocat.txt  -changes the file the way how was at the last commit
+git branch clean_up - creating a new branch with that name
+git branch - pokazva ni branchovete
+git checkout clean_up - switchvame mejdu branchovete s komandata git checkout<imenabrancha>
+git rm '*.txt' - remove all the things inside branch
+git merge clean_up - sliva promenite ot clean_up brancha i master brancha
+git branch -d clean_up - deleting branch ->git branch -d <branch name>
+git push -pushvame vsichko vurhu koeto sme rabotili do sega na nashata remote repository
+   

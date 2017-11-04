@@ -1,0 +1,30 @@
+git clone i pishem url-to -tuy svalia failovete ot github
+cd imetonapapkatani
+touch imetonafailani.txt
+notepad imetonafailani.txt
+git config --global user.name mirmeleon -pishem si username
+git config --global user.email   06
+git add . tochkata oznachava vsichki/If you want to delete a file, just
+ delete it and run git add –A
+git commit –m “my first commit” uploads everything to the local repo. –m <message> 
+is the message that will be displayed in github.
+git push -kachva go v git hub saita
+git pull - When working in a team, the command to get the latest commits done by your
+teammates is git pull. Always run git commit before git pull, 
+else you might lose your local changes (git bash won’t allow you anyway).
+
+//simple guide
+1.suzdavame si repository v samia sajt github
+2.otivame v papkata det iskame da kachim davame i desen buton na mishkata i izbirame git
+ bash here
+3.pishem git clone i adresa na repositorito, tuy ni opravia bug-a v putishtata
+//3.pishem git init - koeto idva ot initialise
+4.(moje da se propusne)ll - tuy pokazva kakvi fail imame v papkata
+git config --global user.name mirmeleon -pishem si username
+git config --global user.email
+5.Now we can commit. The command to add all the newly created files to the repo is
+git add .  (the dot “.” Means “all” vnimanie ima razstoianie mejdu . i add!). If you want 
+to delete a file, just delete it and run git add –A
+6.git commit –m “my first commit” uploads everything to the local repo. –m <message> is the message that 
+will be displayed in github.
+5.git push -uploads everything to github site!
