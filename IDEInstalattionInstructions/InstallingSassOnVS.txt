@@ -9,4 +9,4 @@ instalaciata svurshva kato izpishe pr 5 gems installed
 6. pak d buton vurhu proekta add new item ->sass za c#
 7. d buton vurhu fajla scss i izbirame web compiler->compile file
 
-ama az si go instalnah na visual studio code
+8. kogato sme vurhu .html file-a ni ctr+f5
