@@ -1,0 +1,12 @@
+//instalvane na sass (bil e tool za ruby)
+1. svaliame ruby
+2. na searcha na windowsa pishem start command prompt with ruby i pishem 
+gem install sass
+instalaciata svurshva kato izpishe pr 5 gems installed
+3. instalacia na sass na VS ->file ->new ->web site ->davame mu ime
+4. desen buton vurhu proekta vdisno i Add new item ->html page (bez znachenie koia)
+5. ot tools -> extensions and updates -> online ->na searcha pishem web compiler
+6. pak d buton vurhu proekta add new item ->sass za c#
+7. d buton vurhu fajla scss i izbirame web compiler->compile file
+
+ama az si go instalnah na visual studio code
