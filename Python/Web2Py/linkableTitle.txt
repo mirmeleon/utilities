@@ -1,0 +1,12 @@
+//cool trick -> making title of the post linkable to url of our choice :)))
+
+{{for r in rows:}}
+   <a href='{{=r.url}}' target="_new">{{=r.blog_title}}</a>
+   <p>{{=r.blog_details}}</p>
+<p>{{=r.blog_date_posted}}</p>
+<p>Add commentar {{=A('add', _class="btn btn-large btn-primary", _href=URL('add_commentar', args=r.id))}}</p>
+<p>
+{{=A('details', _class="btn btn-large btn-primary", _href=URL('details', args=r.id))}}
+</p>
+<hr>
+{{pass}}
