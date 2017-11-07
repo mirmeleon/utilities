@@ -5,3 +5,7 @@ from gluon.tools import Auth, Service, PluginManager, prettydate
 {{=prettydate(task.created_on)}}
 
 i posle pokazva datata s on 24 minutes ago 
+
+
+opraviane na formata v tablici
+<h3 class="center"> Can start at: {{=candidate.can_start_at.strftime("%d-%m-%Y")}} </h3> 
