@@ -1,0 +1,6 @@
+models/db.py
+auth.settings.actions_disabled = ['register']
+
+#restriction based ot roles
+if (auth.user_id != None) and ((auth.has_membership(role = 'admin')) :
+    response.menu += [('VIP Only',  False,  URL('vip')), ]
