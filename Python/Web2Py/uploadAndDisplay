@@ -1,0 +1,10 @@
+
+db field  Field('CV', 'upload', default=''),
+controler
+
+view
+<img  src="{{=URL( 'download', args=pic)}}" />
+
+ili <td>{{=A("CV", _href=URL('download', args=[r.CV]))}}</td> #r shtoto foreachvam prey rows
+//2ri nachin ama ne e dobur
+<td>{{=A("CV", _href=URL(r=request,  c='appadmin', f='download/db', args=[r.CV]))}}</td>
